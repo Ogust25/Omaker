@@ -21,7 +21,41 @@ export default function Index() {
 					className="absolute bottom-0 right-0"
 				/>
 			</header>
-			<div className="h-screen bg-red-500"></div>
+			<section className="h-screen bg-bio relative">
+				<img
+					className="absolute top-10 right-0 w-1/5 invert"
+					src={logoOmarker}
+					alt="logo"
+				/>
+				<div className="verticalTxt flex text-orange-500 font-G-Ultra text-9xl overflow-hidden absolute bottom-0 left-7 h-full rotate-180 scale-x-200">
+					<span className="infiniteAnimation whitespace-nowrap">
+						BIOGRAPHIE
+					</span>
+					<span className="infiniteAnimation whitespace-nowrap">
+						BIOGRAPHIE
+					</span>
+				</div>
+				<div className="bg-white font-bebas text-2xl w-3/5 absolute right-0 -bottom-36 p-10 font-bold">
+					<p className="mb-5">
+						Artiste pluridisciplinaire, Omarker explore les supports et les
+						médiums à travers sa pratique de la peinture, du tatouage et du
+						design graphique.
+					</p>
+					<p className="mb-5">
+						Son travail, à mi-chemin entre art urbain et design graphique
+						contemporain, se caractérise par un ensemble d'éléments graphiques,
+						de dynamiques et de lettres fragmentés qui s'oppose et se superpose,
+						créant un rythme dans un ensemble abstrait.
+					</p>
+					<p>
+						Omarker tente d'adapter son langage et ses codes au travers des
+						supports et des techniques tout en conservant un aspect brut et un
+						équilibre des éléments qui composent l'image.
+					</p>
+				</div>
+			</section>
+			<section className="h-screen bg-wall"></section>
+			<section className="h-screen bg-invert"></section>
 		</main>
 	);
 }

@@ -8,9 +8,16 @@ module.exports = {
 		extend: {
 			backgroundImage: {
 				main: "url('../images/background.webp')",
+				bio: "url('../images/photo_bio.webp')",
+				wall: "url('../images/bg_insta.webp')",
+				invert: "url('../images/bg_neg.webp')",
 			},
 			fontFamily: {
-				bebas: ['Bebas Neue Pro'],
+				'bebas': ['Bebas Neue Pro'],
+				'G-Ultra': ['Gotham Ultra'],
+			},
+			scale: {
+				200: '2',
 			},
 		},
 	},

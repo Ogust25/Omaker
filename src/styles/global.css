@@ -29,7 +29,12 @@
 		src: url(../fonts/gotham/Gotham-Medium.ttf);
 	}
 
-	/* Animation Float on Logo */
+	.active {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+
+	/* Animation float on logo */
 	.floatAnimation {
 		transform: translatey(0px);
 		animation: float ease-in-out infinite;
@@ -46,6 +51,8 @@
 			transform: translatey(0px);
 		}
 	}
+
+	/* Animation scrolling vertical text */
 	.verticalTxt {
 		writing-mode: vertical-rl;
 	}
@@ -59,9 +66,5 @@
 		100% {
 			transform: translate(0, 0%);
 		}
-	}
-	.active {
-		font-size: 2rem;
-		font-weight: bold;
 	}
 }
