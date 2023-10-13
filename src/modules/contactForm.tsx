@@ -14,6 +14,7 @@ function ContactForm() {
 		formState: { errors },
 	} = useForm<FormData>();
 	const onSubmit = (data: FormData) => {
+		// Traiter les infos et envoyer le mail si ok
 		console.log(data);
 	};
 

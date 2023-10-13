@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import '../styles/global.css';
+import ContactForm from '../modules/contactForm';
 import logoOmarker from '../images/blaze.png';
 import gradientBlack from '../images/gradient_black.png';
 import gradientWhite from '../images/gradient_white.png';
-import ContactForm from '../modules/contactForm';
+import peinture from '../images/oeuvresOmarker/Algorithme.webp';
+import peinture2 from '../images/oeuvresOmarker/Focus.webp';
+import peinture3 from '../images/oeuvresOmarker/HeureBleue.webp';
 
 export default function Index() {
 	const [textColorClass, setTextColorClass] = useState('text-black');
@@ -78,7 +81,23 @@ export default function Index() {
 				</div>
 			</section>
 
-			<section className="h-screen bg-wall"></section>
+			<section className="h-screen bg-wall flex pt-20">
+				<img
+					src={peinture2}
+					alt="Peinture de Omarker"
+					className="m-auto h-2/3"
+				/>
+				<img
+					src={peinture}
+					alt="Peinture de Omarker"
+					className="m-auto h-2/3"
+				/>
+				<img
+					src={peinture3}
+					alt="Peinture de Omarker"
+					className="m-auto h-2/3"
+				/>
+			</section>
 
 			<section className="h-screen bg-invert relative overflow-hidden flex ">
 				<img
