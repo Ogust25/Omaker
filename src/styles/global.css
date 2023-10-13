@@ -1,3 +1,67 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Bebas Neue Pro';
+		src: url(../fonts/bebas/Bebas_Neue_Pro_Regular.otf),
+			url(../fonts/bebas/Bebas_Neue_Pro_Bold.otf);
+	}
+	@font-face {
+		font-family: 'Gotham Ultra';
+		src: url(../fonts/gotham/GOTHAM-ULTRA.ttf);
+	}
+	@font-face {
+		font-family: 'Gotham Bold';
+		src: url(../fonts/gotham/Gotham-Bold.otf);
+	}
+	@font-face {
+		font-family: 'Gotham Black';
+		src: url(../fonts/gotham/Gotham-Black.otf);
+	}
+	@font-face {
+		font-family: 'Gotham Light';
+		src: url(../fonts/gotham/Gotham-Light.ttf);
+	}
+	@font-face {
+		font-family: 'Gotham Medium';
+		src: url(../fonts/gotham/Gotham-Medium.ttf);
+	}
+
+	/* Animation Float on Logo */
+	.floatAnimation {
+		transform: translatey(0px);
+		animation: float ease-in-out infinite;
+		animation-duration: 4s;
+	}
+	@keyframes float {
+		0% {
+			transform: translatey(0px);
+		}
+		50% {
+			transform: translatey(-20px);
+		}
+		100% {
+			transform: translatey(0px);
+		}
+	}
+	.verticalTxt {
+		writing-mode: vertical-rl;
+	}
+	.infiniteAnimation {
+		animation: scrollTxt 10s linear infinite;
+	}
+	@keyframes scrollTxt {
+		0% {
+			transform: translate(0, -100%);
+		}
+		100% {
+			transform: translate(0, 0%);
+		}
+	}
+	.active {
+		font-size: 2rem;
+		font-weight: bold;
+	}
+}
