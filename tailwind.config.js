@@ -3,6 +3,7 @@ module.exports = {
 	content: [
 		'./src/pages/**/*.{js,jsx,ts,tsx}',
 		'./src/components/**/*.{js,jsx,ts,tsx}',
+		'./src/modules/**/*.{js,jsx,ts,tsx}',
 	],
 	theme: {
 		extend: {
@@ -15,6 +16,10 @@ module.exports = {
 			fontFamily: {
 				'bebas': ['Bebas Neue Pro'],
 				'G-Ultra': ['Gotham Ultra'],
+				'G-Light': ['Gotham Light'],
+				'G-Bold': ['Gotham Bold'],
+				'G-Black': ['Gotham Black'],
+				'G-Medium': ['Gotham Medium'],
 			},
 			scale: {
 				200: '2',

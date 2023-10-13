@@ -1,17 +1,40 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+
 import '../styles/global.css';
 import logoOmarker from '../images/blaze.png';
 import gradientBlack from '../images/gradient_black.png';
+import gradientWhite from '../images/gradient_white.png';
+import ContactForm from '../modules/contactForm';
 
 export default function Index() {
+	const [textColorClass, setTextColorClass] = useState('text-black');
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollPosition = window.scrollY;
+			if (scrollPosition > window.innerHeight) {
+				setTextColorClass('text-white');
+			} else {
+				setTextColorClass('text-black');
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	return (
 		<main className="bg-main">
-			<header className="h-screen flex">
+			<header className="h-screen flex relative z-50">
 				<nav className="w-5/6 fixed top-0 left-1/2 transform -translate-x-1/2 pt-5">
-					<ul className="flex flex-row justify-evenly text-2xl font-bebas tracking-widest">
-						<li className="hover:font-bold">PEINTURE</li>
-						<li className="hover:font-bold">TATTOO</li>
-						<li className="hover:font-bold">GRAPHISME</li>
+					<ul
+						className={`flex flex-row justify-evenly text-3xl font-bebas tracking-widest ${textColorClass}`}
+					>
+						<li className="hover:font-bold hover:text-orange-500">PEINTURE</li>
+						<li className="hover:font-bold hover:text-orange-500">TATTOO</li>
+						<li className="hover:font-bold hover:text-orange-500">GRAPHISME</li>
 					</ul>
 				</nav>
 				<img className="m-auto floatAnimation" src={logoOmarker} alt="logo" />
@@ -54,8 +77,28 @@ export default function Index() {
 					</p>
 				</div>
 			</section>
+
 			<section className="h-screen bg-wall"></section>
-			<section className="h-screen bg-invert"></section>
+
+			<section className="h-screen bg-invert relative overflow-hidden flex ">
+				<img
+					src={gradientWhite}
+					alt="styling_element"
+					className="absolute top-0 left-0"
+				/>
+				<div className="verticalTxt flex text-white font-G-Ultra text-9xl overflow-hidden absolute bottom-0 right-7 h-full scale-x-200">
+					<span className="infiniteAnimation whitespace-nowrap">CONTACT</span>
+					<span className="infiniteAnimation whitespace-nowrap">CONTACT</span>
+					<span className="infiniteAnimation whitespace-nowrap">CONTACT</span>
+				</div>
+
+				<ContactForm />
+
+				<footer className="flex flex-col items-center justify-center pt-4 pb-2 absolute bottom-0 left-1/2 transform -translate-x-1/2 invert">
+					<img className="w-1/5" src={logoOmarker} alt="logo Omarker" />
+					<p className="font-G-Medium text-sm">OMARKER | Tout droit réservé.</p>
+				</footer>
+			</section>
 		</main>
 	);
 }
