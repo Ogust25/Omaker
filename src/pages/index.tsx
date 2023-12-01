@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'gatsby';
 
 import '../styles/global.css';
 import ContactForm from '../modules/contactForm';
@@ -35,9 +36,24 @@ export default function Index() {
 					<ul
 						className={`flex flex-row justify-evenly text-3xl font-bebas tracking-widest ${textColorClass}`}
 					>
-						<li className="hover:font-bold hover:text-orange-500">PEINTURE</li>
-						<li className="hover:font-bold hover:text-orange-500">TATTOO</li>
-						<li className="hover:font-bold hover:text-orange-500">GRAPHISME</li>
+						<Link
+							to="/gallery"
+							className="hover:font-bold hover:text-orange-500"
+						>
+							PEINTURE
+						</Link>
+						<Link
+							to="/gallery"
+							className="hover:font-bold hover:text-orange-500"
+						>
+							TATTOO
+						</Link>
+						<Link
+							to="/gallery"
+							className="hover:font-bold hover:text-orange-500"
+						>
+							GRAPHISME
+						</Link>
 					</ul>
 				</nav>
 				<img className="m-auto floatAnimation" src={logoOmarker} alt="logo" />
