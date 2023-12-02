@@ -2,13 +2,30 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 
 import '../styles/global.css';
-import logoOmarker from '../images/blaze.png';
-import peinture from '../images/oeuvresOmarker/Algorithme.webp';
+import Loader from '../components/Loader';
+import Image from '../components/Image';
+import peinture1 from '../images/oeuvresOmarker/Algorithme.webp';
 import peinture2 from '../images/oeuvresOmarker/Focus.webp';
 import peinture3 from '../images/oeuvresOmarker/HeureBleue.webp';
 
 export default function Gallery() {
 	const [textColorClass, setTextColorClass] = useState('text-black');
+	const [isLoading, setIsLoading] = useState(true);
+	const [peintures, setPeintures] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:1337/api/peintures?populate=Image', {
+			method: 'GET',
+			headers: {
+				Accept: 'Application.json',
+			},
+		})
+			.then(res => res.json())
+			.then(response => {
+				setPeintures(response.data);
+				setIsLoading(false);
+			});
+	}, []);
 
 	return (
 		<main>
@@ -62,9 +79,13 @@ export default function Gallery() {
 				</nav>
 			</aside>
 			<section id="mur" className="pl-44 pt-32 relative flex justify-evenly">
-				<img className="w-1/5" src={peinture} alt="peinture" />
-				<img className="w-1/5" src={peinture} alt="peinture" />
-				<img className="w-1/5" src={peinture} alt="peinture" />
+				{isLoading ? (
+					<Loader />
+				) : (
+					peintures.map((peinture: any) => (
+						<Image content={peinture} key={peinture.id} />
+					))
+				)}
 			</section>
 			<section id="oeuvre" className="pl-44 pt-32 relative flex justify-evenly">
 				<img className="w-1/5" src={peinture2} alt="peinture" />
@@ -80,9 +101,9 @@ export default function Gallery() {
 				id="workshop"
 				className="pl-44 pt-32 relative flex justify-evenly"
 			>
-				<img className="w-1/5" src={peinture} alt="peinture" />
-				<img className="w-1/5" src={peinture} alt="peinture" />
-				<img className="w-1/5" src={peinture} alt="peinture" />
+				<img className="w-1/5" src={peinture1} alt="peinture" />
+				<img className="w-1/5" src={peinture1} alt="peinture" />
+				<img className="w-1/5" src={peinture1} alt="peinture" />
 			</section>
 		</main>
 	);
