@@ -4,17 +4,16 @@ import { Link } from 'gatsby';
 import '../styles/global.css';
 import Loader from '../components/Loader';
 import Image from '../components/Image';
-import peinture1 from '../images/oeuvresOmarker/Algorithme.webp';
-import peinture2 from '../images/oeuvresOmarker/Focus.webp';
-import peinture3 from '../images/oeuvresOmarker/HeureBleue.webp';
 
 export default function Gallery() {
 	const [textColorClass, setTextColorClass] = useState('text-black');
 	const [isLoading, setIsLoading] = useState(true);
-	const [peintures, setPeintures] = useState([]);
+	const [oeuvres, setOeuvres] = useState([]);
+	const [murs, setMurs] = useState([]);
+	const [workshops, setWorkshops] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:1337/api/peintures?populate=image', {
+		fetch('http://localhost:1337/api/peintures?populate=categories,image', {
 			method: 'GET',
 			headers: {
 				Accept: 'Application.json',
@@ -22,7 +21,34 @@ export default function Gallery() {
 		})
 			.then(res => res.json())
 			.then(response => {
-				setPeintures(response.data);
+				response.data.forEach(item => {
+					switch (item.attributes.categories.data[0].attributes.nom) {
+						case 'oeuvre':
+							setOeuvres(prevOeuvres => {
+								if (!prevOeuvres.some(oeuvre => oeuvre.id === item.id)) {
+									return [...prevOeuvres, item];
+								}
+								return prevOeuvres;
+							});
+							break;
+						case 'mur':
+							setMurs(prevMurs => {
+								if (!prevMurs.some(mur => mur.id === item.id)) {
+									return [...prevMurs, item];
+								}
+								return prevMurs;
+							});
+							break;
+						case 'workshop':
+							setWorkshops(prevWorkshops => {
+								if (!prevWorkshops.some(workshop => workshop.id === item.id)) {
+									return [...prevWorkshops, item];
+								}
+								return prevWorkshops;
+							});
+							break;
+					}
+				});
 				setIsLoading(false);
 			});
 	}, []);
@@ -82,28 +108,32 @@ export default function Gallery() {
 				{isLoading ? (
 					<Loader />
 				) : (
-					peintures.map((peinture: any) => (
-						<Image content={peinture} key={peinture.id} />
+					oeuvres.map((oeuvre: any) => (
+						<Image content={oeuvre} key={oeuvre.id} />
 					))
 				)}
 			</section>
 			<section id="oeuvre" className="pl-44 pt-32 relative flex justify-evenly">
-				<img className="w-1/5" src={peinture2} alt="peinture" />
-				<img className="w-1/5" src={peinture2} alt="peinture" />
-				<img className="w-1/5" src={peinture2} alt="peinture" />
+				{isLoading ? (
+					<Loader />
+				) : (
+					murs.map((mur: any) => <Image content={mur} key={mur.id} />)
+				)}
 			</section>
 			<section id="expo" className="pl-44 pt-32 relative flex justify-evenly">
-				<img className="w-1/5" src={peinture3} alt="peinture" />
-				<img className="w-1/5" src={peinture3} alt="peinture" />
-				<img className="w-1/5" src={peinture3} alt="peinture" />
+				<p>text avec les expos</p>
 			</section>
 			<section
 				id="workshop"
 				className="pl-44 pt-32 relative flex justify-evenly"
 			>
-				<img className="w-1/5" src={peinture1} alt="peinture" />
-				<img className="w-1/5" src={peinture1} alt="peinture" />
-				<img className="w-1/5" src={peinture1} alt="peinture" />
+				{isLoading ? (
+					<Loader />
+				) : (
+					workshops.map((workshop: any) => (
+						<Image content={workshop} key={workshop.id} />
+					))
+				)}
 			</section>
 		</main>
 	);
