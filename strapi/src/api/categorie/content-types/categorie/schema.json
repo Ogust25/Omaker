@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "categorie",
+    "pluralName": "categories",
+    "displayName": "categorie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string"
+    },
+    "peintures": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::peinture.peinture",
+      "inversedBy": "categories"
+    },
+    "tattoos": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tattoo.tattoo",
+      "inversedBy": "categories"
+    }
+  }
+}

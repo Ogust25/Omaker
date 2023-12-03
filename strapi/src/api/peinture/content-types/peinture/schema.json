@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "peintures",
+  "info": {
+    "singularName": "peinture",
+    "pluralName": "peintures",
+    "displayName": "peinture"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nom": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::categorie.categorie",
+      "mappedBy": "peintures"
+    }
+  }
+}

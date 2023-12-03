@@ -14,7 +14,7 @@ export default function Gallery() {
 	const [peintures, setPeintures] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:1337/api/peintures?populate=Image', {
+		fetch('http://localhost:1337/api/peintures?populate=image', {
 			method: 'GET',
 			headers: {
 				Accept: 'Application.json',
